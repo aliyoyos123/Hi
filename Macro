@@ -1,0 +1,150 @@
+local _0xFBD5 = {
+    ["\95\120\48\48"] = false,
+    ["\95\120\48\49"] = 150,
+    ["\95\120\48\50"] = -0.22,
+    ["\95\120\48\51"] = true,
+    ["\95\120\48\52"] = function(_0xC4F9)
+        return game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", {
+            Title = "\83\99\114\105\112\116",
+            Text = _0xC4F9,
+            Icon = "\114\98\120\116\104\117\109\98\58\47\47\116\121\112\101\61\65\115\115\101\116\38\105\100\61\49\51\51\50\50\49\51\51\55\52\38\119\61\49\53\48\38\104\61\49\53\48",
+            Duration = 2
+        })
+    end
+}
+
+local _0xA7C2 = {M = true, N = true, V = true, P = true}
+local _0xD3B5 = nil
+local _0xE1F8 = false
+local _0xE9C4 = false
+
+-- GUI Creation
+local _0xCC83 = Instance.new("\83\99\114\101\101\110\71\117\105")
+_0xCC83.Name = string.char(math.random(65, 90)) .. string.char(math.random(65, 90)) .. string.char(math.random(65, 90))
+_0xCC83.ResetOnSpawn = false
+_0xCC83.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+_0xCC83.Parent = game:GetService("\67\111\114\101\71\117\105")
+
+local _0xB4D2 = Instance.new("\84\101\120\116\66\117\116\116\111\110")
+_0xB4D2.Name = string.char(math.random(65, 90)) .. string.char(math.random(65, 90)) .. string.char(math.random(65, 90))
+_0xB4D2.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+_0xB4D2.BorderSizePixel = 2
+_0xB4D2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_0xB4D2.Position = UDim2.new(0, 10, 0.8, 0)
+_0xB4D2.Size = UDim2.new(0, 120, 0, 60)
+_0xB4D2.Font = Enum.Font.SourceSansBold
+_0xB4D2.Text = "\79\70\70"
+_0xB4D2.TextColor3 = Color3.fromRGB(255, 255, 255)
+_0xB4D2.TextSize = 18
+_0xB4D2.Parent = _0xCC83
+_0xB4D2.Active = true
+_0xB4D2.Draggable = true
+
+local function _0xF4A6()
+    if _0xFBD5["\95\120\48\48"] then
+        _0xB4D2.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
+        _0xB4D2.Text = "\79\78"
+    else
+        _0xB4D2.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+        _0xB4D2.Text = "\79\70\70"
+    end
+end
+
+local function _0xCAB3()
+    if _0xD3B5 then return end
+    
+    _0xD3B5 = function()
+        local _0x1 = game:GetService("\80\108\97\121\101\114\115")
+        local _0x2 = _0x1.LocalPlayer
+        local _0x3 = _0x2:GetMouse()
+        local _0x4 = getrenv()._G
+        local _0x5 = getrawmetatable(game)
+        local _0x6 = _0x5.__newindex
+        local _0x7 = _0x5.__index
+        
+        -- Key handler
+        _0x3.KeyDown:Connect(function(_0x8)
+            if not _0xFBD5["\95\120\48\48"] then return end
+            
+            if _0x8:lower() == "m" then
+                _0xFBD5["\95\120\48\49"] = _0xFBD5["\95\120\48\49"] + 5
+                _0xFBD5["\95\120\48\52"]("Speed: " .. tostring(_0xFBD5["\95\120\48\49"]))
+            elseif _0x8:lower() == "n" then
+                _0xFBD5["\95\120\48\49"] = _0xFBD5["\95\120\48\49"] - 5
+                _0xFBD5["\95\120\48\52"]("Speed: " .. tostring(_0xFBD5["\95\120\48\49"]))
+            elseif _0x8:lower() == "v" then
+                _0xFBD5["\95\120\48\51"] = not _0xFBD5["\95\120\48\51"]
+                _0xFBD5["\95\120\48\52"](_0xFBD5["\95\120\48\51"] and "On" or "Off")
+            elseif _0x8.KeyCode == Enum.KeyCode.P then
+                _0xE9C4 = not _0xE9C4
+                
+                if _0xE9C4 and not _0xE1F8 then
+                    _0xE1F8 = true
+                    spawn(function()
+                        while _0xE9C4 and _0xFBD5["\95\120\48\48"] do
+                            pcall(function()
+                                _0x2.Character.HumanoidRootPart.CFrame = 
+                                    _0x2.Character.HumanoidRootPart.CFrame + 
+                                    _0x2.Character.Humanoid.MoveDirection * _0xFBD5["\95\120\48\50"]
+                            end)
+                            game:GetService("\82\117\110\83\101\114\118\105\99\101").Stepped:wait()
+                        end
+                        _0xE1F8 = false
+                    end)
+                end
+            elseif _0x8.KeyCode == Enum.KeyCode.LeftBracket then
+                _0xFBD5["\95\120\48\50"] = _0xFBD5["\95\120\48\50"] + 0.01
+                print(_0xFBD5["\95\120\48\50"])
+            elseif _0x8.KeyCode == Enum.KeyCode.RightBracket then
+                _0xFBD5["\95\120\48\50"] = _0xFBD5["\95\120\48\50"] - 0.01
+                print(_0xFBD5["\95\120\48\50"])
+            end
+        end)
+        
+        -- Metatable hooking
+        setreadonly(_0x5, false)
+        
+        -- Backup original methods
+        local _0x9 = _0x5.__index
+        local _0x10 = _0x5.__newindex
+        
+        _0x5.__index = newcclosure(function(_0x11, _0x12)
+            local _0x13 = checkcaller()
+            if _0xFBD5["\95\120\48\48"] and _0x12 == "\87\97\108\107\83\112\101\101\100" and not _0x13 then
+                return _0x4.CurrentWS
+            end
+            return _0x9(_0x11, _0x12)
+        end)
+        
+        _0x5.__newindex = newcclosure(function(_0x14, _0x15, _0x16)
+            local _0x17 = checkcaller()
+            if _0xFBD5["\95\120\48\48"] and _0xFBD5["\95\120\48\51"] then
+                if _0x15 == "\87\97\108\107\83\112\101\101\100" and _0x16 ~= 0 and not _0x17 then
+                    return _0x10(_0x14, _0x15, _0xFBD5["\95\120\48\49"])
+                end
+            end
+            return _0x10(_0x14, _0x15, _0x16)
+        end)
+        
+        setreadonly(_0x5, true)
+    end
+    
+    _0xD3B5()
+end
+
+_0xB4D2.MouseButton1Click:Connect(function()
+    _0xFBD5["\95\120\48\48"] = not _0xFBD5["\95\120\48\48"]
+    _0xF4A6()
+    
+    if _0xFBD5["\95\120\48\48"] then
+        _0xFBD5["\95\120\48\52"]("Enabled")
+        _0xCAB3()
+    else
+        _0xFBD5["\95\120\48\52"]("Disabled")
+        _0xE9C4 = false
+    end
+end)
+
+repeat wait() until game:IsLoaded()
+_0xF4A6()
+_0xFBD5["\95\120\48\52"]("Ready")
